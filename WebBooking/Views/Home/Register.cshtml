@@ -1,0 +1,43 @@
+﻿@model WebBooking.Models.Customer
+
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Register</h2>
+
+<div class="container">
+    <div class="col-6">
+        @using (Html.BeginForm("Register", "Home", FormMethod.Post))
+        {
+            //@Html.ValidationSummary()
+            @Html.AntiForgeryToken()
+            <div>
+                @Html.LabelFor(kh => kh.CustomerName, "Tên khách hàng: ")
+                @Html.TextBoxFor(kh => kh.CustomerName, new { @placeholder = "Điền tên của bạn"})
+            </div>
+            <div>
+                @Html.LabelFor(kh => kh.Address, "Địa chỉ")
+                @Html.TextBoxFor(kh => kh.Address)
+            </div>
+            <div>
+                @Html.LabelFor(kh => kh.Tel, "Số điện thoại")
+                @Html.TextBoxFor(kh => kh.Tel)
+            </div>
+            <div>
+                @Html.LabelFor(kh => kh.email, "Email")
+                @Html.TextBoxFor(kh => kh.email)
+            </div>
+            <div>
+                @Html.LabelFor(kh => kh.password, "Mật khẩu")
+                @Html.TextBoxFor(kh => kh.password)
+            </div>
+            <div>
+                @Html.LabelFor(kh => kh.confirm_password, "Xác nhận mật khẩu")
+                @Html.TextBoxFor(kh => kh.confirm_password)
+            </div>
+            <input type="submit" value="Đăng ký"/>
+        }
+    </div>
+</div>

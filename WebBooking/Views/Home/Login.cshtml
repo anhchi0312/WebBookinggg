@@ -1,0 +1,22 @@
+﻿@model WebBooking.Models.Customer
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Login</h2>
+
+@using (Html.BeginForm("Login", "Home", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div>
+        @Html.LabelFor(m => m.email, "Email")
+        @Html.TextBoxFor(m => m.email)
+    </div>
+    <div>
+        @Html.LabelFor(m => m.password, "Password")
+        @Html.PasswordFor(m => m.password)
+    </div>
+    <input type="submit" value="Đăng nhập" />
+
+}    
