@@ -130,7 +130,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\DatGoisController.cs" />
+    <Compile Include="Controllers\GoisController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -146,10 +148,20 @@
     <Compile Include="Migrations\202011241459042_edit_table.Designer.cs">
       <DependentUpon>202011241459042_edit_table.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202012030944339_add_table.cs" />
+    <Compile Include="Migrations\202012030944339_add_table.Designer.cs">
+      <DependentUpon>202012030944339_add_table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012030947466_add_migration.cs" />
+    <Compile Include="Migrations\202012030947466_add_migration.Designer.cs">
+      <DependentUpon>202012030947466_add_migration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\DatGoi.cs" />
     <Compile Include="Models\DBconect.cs" />
+    <Compile Include="Models\Goi.cs" />
+    <Compile Include="Models\New.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -185,8 +197,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Customers\Create.cshtml" />
     <Content Include="Views\Customers\Delete.cshtml" />
@@ -200,6 +210,16 @@
     <Content Include="Views\DatGois\Index.cshtml" />
     <Content Include="Views\Home\Register.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Gois\Create.cshtml" />
+    <Content Include="Views\Gois\Delete.cshtml" />
+    <Content Include="Views\Gois\Details.cshtml" />
+    <Content Include="Views\Gois\Edit.cshtml" />
+    <Content Include="Views\Gois\Index.cshtml" />
+    <Content Include="Views\News\Create.cshtml" />
+    <Content Include="Views\News\Delete.cshtml" />
+    <Content Include="Views\News\Details.cshtml" />
+    <Content Include="Views\News\Edit.cshtml" />
+    <Content Include="Views\News\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -226,6 +246,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011241459042_edit_table.resx">
       <DependentUpon>202011241459042_edit_table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012030944339_add_table.resx">
+      <DependentUpon>202012030944339_add_table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012030947466_add_migration.resx">
+      <DependentUpon>202012030947466_add_migration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

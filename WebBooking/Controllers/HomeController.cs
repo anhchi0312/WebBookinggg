@@ -49,7 +49,7 @@ namespace WebBooking.Controllers
                     //add session
                     Session["IDKhachHang"] = kiem_tra_tai_khoan.FirstOrDefault().CustomerId;
                     Session["TenKhachHang"] = kiem_tra_tai_khoan.FirstOrDefault().CustomerName;
-                    return RedirectToAction("Register");
+                    return RedirectToAction("Index");
                 }
                 else
                 {

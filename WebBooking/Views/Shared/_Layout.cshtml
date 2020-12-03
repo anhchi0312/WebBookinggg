@@ -16,13 +16,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Book Gói Dịch Vụ Sinh", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Gói dịch vụ", "Index", "Gois")</li>
+                    <li>@Html.ActionLink("Bài viết", "Index", "News")</li>
                     <li>@Html.ActionLink("Khách hàng", "Index", "Customers")</li>
                     <li>@Html.ActionLink("Đặt gói", "Index", "DatGois")</li>
                     @if (Session["IDKhachHang"] == null)
