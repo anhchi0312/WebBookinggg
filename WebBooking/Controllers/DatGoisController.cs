@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PagedList;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -23,6 +24,18 @@ namespace WebBooking.Controllers
             }
              return View(db.DatGois.ToList()); 
         }
+        public ViewResult PageList (int? page)
+        {
+            //So ban ghi hien thi o moi trang
+            var pagesize = 10;
+            //lay du lieu
+            var model = db.DatGois.ToList();
+            //neu page number == null thi tra ve trang 1
+            int pageNumber = page ?? 1;
+            return View(model.ToPagedList(pageNumber, pagesize));
+        }
+
+      
 
         // GET: DatGois/Details/5
         public ActionResult Details(int? id)
