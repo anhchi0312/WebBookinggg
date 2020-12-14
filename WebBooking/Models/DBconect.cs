@@ -11,6 +11,7 @@ namespace WebBooking.Models
         public DbSet<DatGoi> DatGois { get; set; }
         public DbSet<Goi> Gois { get; set; }
         public DbSet<New> News { get; set; }
+        public DbSet<NhanVien> NhanViens { get; set; }
         public DBconect()
             : base("name=DBconect")
         {

@@ -1,0 +1,144 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Quản lý dịch vụ sinh  </title>
+
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800" rel="stylesheet">
+
+    <link href="~/Areas/Admin/css/all.min.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/css/c3.min.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/css/iconkit.min.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/css/ionicons.min.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/css/jquery-jvectormap.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/css/owl.carousel.min.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/css/owl.theme.default.min.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/css/perfect-scrollbar.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/css/weather-icons.min.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/css/theme.min.css" rel="stylesheet" />
+    <script src="~/Areas/Admin/js/modernizr-2.8.3.min.js"></script>
+</head>
+<body>
+    <div class="wrapper">
+        <header class="header-top" header-theme="light">
+            <div class="container-fluid">
+                <div class="d-flex justify-content-between">
+                    <div class="top-menu d-flex align-items-center">
+                        <button type="button" class="btn-icon mobile-nav-toggle d-lg-none"><span></span></button>
+                        <div class="header-search">
+                            <div class="input-group">
+                                <span class="input-group-addon search-close"><i class="ik ik-x"></i></span>
+                                <input type="text" class="form-control">
+                                <span class="input-group-addon search-btn"><i class="ik ik-search"></i></span>
+                            </div>
+                        </div>
+                        <button type="button" id="navbar-fullscreen" class="nav-link"><i class="ik ik-maximize"></i></button>
+                    </div>
+                    <div class="top-menu d-flex align-items-center">
+                        <div class="dropdown">
+                            <a class="dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="avatar" src="~/Areas/Admin/img/user.jpg" alt=""></a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="profile.html"><i class="ik ik-user dropdown-icon"></i> Xem thông tin</a>
+                                <a class="dropdown-item" href="#"><i class="ik ik-settings dropdown-icon"></i> Sửa thông tin</a>
+                                <a class="dropdown-item" href="login.html"><i class="ik ik-power dropdown-icon"></i> Đăng xuất</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="page-wrap">
+            <div class="app-sidebar colored">
+                <div class="sidebar-header">
+                    <a class="header-brand" href="index.html">
+                        <div class="logo-img">
+                            @*<img src="src/img/brand-white.svg" class="header-brand-img" alt="lavalite">*@
+                        </div>
+                        <span class="text">ADMIN</span>
+                    </a>
+                </div>
+
+                <div class="sidebar-content">
+                    <div class="nav-container">
+                        <nav id="main-menu-navigation" class="navigation-main">
+                            <div class="nav-lavel">QUẢN LÝ NHÂN VIÊN</div>
+                            <div class="nav-item has-sub">
+                                <a href="#"><span>Danh sách nhân viên</span></a>
+                            </div>
+                            <div class="nav-lavel">QUẢN LÝ KHÁCH HÀNG</div>
+                            <div class="nav-item active">
+                                @Html.ActionLink("Danh sách khách hàng", "Index", "Customers")
+                            </div>
+                            <div class="nav-item">
+                                @*@Html.ActionLink("Danh sách khách hàng", "Index", "Customers")*@
+                                <a href="#"><span>Khách hàng mới</span> <span class="badge badge-success">New</span></a>
+                            </div>
+                            <div class="nav-item has-sub">
+                                <a href="#"><span>Khách hàng Vip</span> <span class="badge badge-danger">Vip</span></a>
+                            </div>
+                            <div class="nav-lavel">QUẢN LÝ DỊCH VỤ</div>
+                            <div class="nav-item has-sub">
+                                @Html.ActionLink("Danh sách gói thai sản", "Index", "Gois")
+                            </div>
+                            <div class="nav-lavel">QUẢN LÝ ĐƠN DỊCH VỤ </div>
+                            <div class="nav-item has-sub">
+                                <a href="#"><span>Đơn đặt dịch vụ thường</span></a>
+                            </div>
+                            <div class="nav-item has-sub">
+                                <a href="#"><span>Đơn đặt dịch vụ Vip</span> <span class="badge badge-danger">Vip</span></a>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <div class="main-content">
+                <div class="container-fluid">
+                    @RenderBody()
+                </div>
+            </div>
+            <footer class="footer">
+                <div class="w-100 clearfix">
+                    <span class="text-center text-sm-left d-md-inline-block">Copyright © 2020 </span>
+                    <span class="float-none float-sm-right mt-1 mt-sm-0 text-center">Crafted with <i class="fa fa-heart text-danger"></i> by <a href="" class="text-dark">...</a></span>
+                </div>
+            </footer>
+
+        </div>
+    </div>
+    <script src="~/Areas/Admin/js/jquery-3.3.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="~/Areas/Admin/js/popper.min.js"></script>
+    <script src="~/Areas/Admin/js/bootstrap.min.js"></script>
+    <script src="~/Areas/Admin/js/perfect-scrollbar.min.js"></script>
+    <script src="~/Areas/Admin/js/screenfull.js"></script>
+    <script src="~/Areas/Admin/js/jquery.dataTables.min.js"></script>
+    <script src="~/Areas/Admin/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/Areas/Admin/js/dataTables.responsive.min.js"></script>
+    <script src="~/Areas/Admin/js/responsive.bootstrap4.min.js"></script>
+    <script src="~/Areas/Admin/js/jquery-jvectormap.min.js"></script>
+    <script src="~/Areas/Admin/js/moment.js"></script>
+    <script src="~/Areas/Admin/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script src="~/Areas/Admin/js/d3.min.js"></script>
+    <script src="~/Areas/Admin/js/c3.min.js"></script>
+    <script src="~/Areas/Admin/js/tables.js"></script>
+    <script src="~/Areas/Admin/js/widgets.js"></script>
+    <script src="~/Areas/Admin/js/charts.js"></script>
+    <script src="~/Areas/Admin/js/theme.min.js"></script>
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+    <script>
+        (function (b, o, i, l, e, r) {
+            b.GoogleAnalyticsObject = l; b[l] || (b[l] =
+            function () { (b[l].q = b[l].q || []).push(arguments) }); b[l].l = +new Date;
+            e = o.createElement(i); r = o.getElementsByTagName(i)[0];
+            e.src = 'https://www.google-analytics.com/analytics.js';
+            r.parentNode.insertBefore(e, r)
+        }(window, document, 'script', 'ga'));
+        ga('create', 'UA-XXXXX-X', 'auto'); ga('send', 'pageview');
+    </script>
+</body>
+</html>

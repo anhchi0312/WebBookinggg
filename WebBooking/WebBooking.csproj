@@ -134,6 +134,10 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\CustomersController.cs" />
+    <Compile Include="Areas\Admin\Controllers\GoisController.cs" />
+    <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\DatGoisController.cs" />
     <Compile Include="Controllers\GoisController.cs" />
@@ -162,15 +166,72 @@
     <Compile Include="Migrations\202012030947466_add_migration.Designer.cs">
       <DependentUpon>202012030947466_add_migration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202012141541080_add_table_NV.cs" />
+    <Compile Include="Migrations\202012141541080_add_table_NV.Designer.cs">
+      <DependentUpon>202012141541080_add_table_NV.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\DatGoi.cs" />
     <Compile Include="Models\DBconect.cs" />
     <Compile Include="Models\Goi.cs" />
     <Compile Include="Models\New.cs" />
+    <Compile Include="Models\NhanVien.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Admin\css\all.min.css" />
+    <Content Include="Areas\Admin\css\bootstrap.min.css" />
+    <Content Include="Areas\Admin\css\c3.min.css" />
+    <Content Include="Areas\Admin\css\dataTables.bootstrap4.min.css" />
+    <Content Include="Areas\Admin\css\iconkit.min.css" />
+    <Content Include="Areas\Admin\css\ionicons.min.css" />
+    <Content Include="Areas\Admin\css\jquery-jvectormap.css" />
+    <Content Include="Areas\Admin\css\login\animate.css" />
+    <Content Include="Areas\Admin\css\login\animsition.min.css" />
+    <Content Include="Areas\Admin\css\login\bootstrap.min.css" />
+    <Content Include="Areas\Admin\css\login\daterangepicker.css" />
+    <Content Include="Areas\Admin\css\login\font-awesome.min.css" />
+    <Content Include="Areas\Admin\css\login\hamburgers.min.css" />
+    <Content Include="Areas\Admin\css\login\icon-font.min.css" />
+    <Content Include="Areas\Admin\css\login\main.css" />
+    <Content Include="Areas\Admin\css\login\select2.min.css" />
+    <Content Include="Areas\Admin\css\login\util.css" />
+    <Content Include="Areas\Admin\css\owl.carousel.min.css" />
+    <Content Include="Areas\Admin\css\owl.theme.default.min.css" />
+    <Content Include="Areas\Admin\css\perfect-scrollbar.css" />
+    <Content Include="Areas\Admin\css\tempusdominus-bootstrap-4.min.css" />
+    <Content Include="Areas\Admin\css\theme.min.css" />
+    <Content Include="Areas\Admin\css\weather-icons.min.css" />
+    <Content Include="Areas\Admin\img\user.jpg" />
+    <Content Include="Areas\Admin\js\bootstrap.min.js" />
+    <Content Include="Areas\Admin\js\c3.min.js" />
+    <Content Include="Areas\Admin\js\charts.js" />
+    <Content Include="Areas\Admin\js\d3.min.js" />
+    <Content Include="Areas\Admin\js\dataTables.bootstrap4.min.js" />
+    <Content Include="Areas\Admin\js\dataTables.responsive.min.js" />
+    <Content Include="Areas\Admin\js\jquery-3.3.1.min.js" />
+    <Content Include="Areas\Admin\js\jquery-jvectormap.min.js" />
+    <Content Include="Areas\Admin\js\jquery.dataTables.min.js" />
+    <Content Include="Areas\Admin\js\login\animsition.min.js" />
+    <Content Include="Areas\Admin\js\login\bootstrap.min.js" />
+    <Content Include="Areas\Admin\js\login\countdowntime.js" />
+    <Content Include="Areas\Admin\js\login\daterangepicker.js" />
+    <Content Include="Areas\Admin\js\login\jquery-3.2.1.min.js" />
+    <Content Include="Areas\Admin\js\login\main.js" />
+    <Content Include="Areas\Admin\js\login\moment.min.js" />
+    <Content Include="Areas\Admin\js\login\popper.js" />
+    <Content Include="Areas\Admin\js\login\select2.min.js" />
+    <Content Include="Areas\Admin\js\modernizr-2.8.3.min.js" />
+    <Content Include="Areas\Admin\js\moment.js" />
+    <Content Include="Areas\Admin\js\perfect-scrollbar.min.js" />
+    <Content Include="Areas\Admin\js\popper.min.js" />
+    <Content Include="Areas\Admin\js\responsive.bootstrap4.min.js" />
+    <Content Include="Areas\Admin\js\screenfull.js" />
+    <Content Include="Areas\Admin\js\tables.js" />
+    <Content Include="Areas\Admin\js\tempusdominus-bootstrap-4.min.js" />
+    <Content Include="Areas\Admin\js\theme.min.js" />
+    <Content Include="Areas\Admin\js\widgets.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -182,6 +243,19 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Areas\Admin\Views\Customers\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Customers\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Customers\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Customers\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Customers\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Login\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Gois\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Gois\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Gois\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Gois\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Gois\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -231,6 +305,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Data\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -260,6 +335,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202012030947466_add_migration.resx">
       <DependentUpon>202012030947466_add_migration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012141541080_add_table_NV.resx">
+      <DependentUpon>202012141541080_add_table_NV.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
