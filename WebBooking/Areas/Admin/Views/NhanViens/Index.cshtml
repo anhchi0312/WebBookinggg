@@ -1,0 +1,52 @@
+﻿@model IEnumerable<WebBooking.Models.NhanVien>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TenNhanVien)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SDT)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.emailNV)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.passwordNV)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TenNhanVien)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SDT)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.emailNV)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.passwordNV)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IDNhanVien }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IDNhanVien }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IDNhanVien })
+        </td>
+    </tr>
+}
+
+</table>
