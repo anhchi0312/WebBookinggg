@@ -29,28 +29,32 @@
             <div class="container-fluid">
                 <div class="d-flex justify-content-between">
                     <div class="top-menu d-flex align-items-center">
-                        @*<button type="button" class="btn-icon mobile-nav-toggle d-lg-none"><span></span></button>
-                                <div class="header-search">
-                                    <div class="input-group">
-                                        <span class="input-group-addon search-close"><i class="ik ik-x"></i></span>
-                                        <input type="text" class="form-control">
-                                        <span class="input-group-addon search-btn"><i class="ik ik-search"></i></span>
-                                    </div>
-                             </div>
-                            <button type="button" id="navbar-fullscreen" class="nav-link"><i class="ik ik-maximize"></i></button>
-                        *@
+                        <button type="button" class="btn-icon mobile-nav-toggle d-lg-none"><span></span></button>
+                        @*<div class="header-search">
+                <div class="input-group">
+                    <span class="input-group-addon search-close"><i class="ik ik-x"></i></span>
+                    <input type="text" class="form-control">
+                    <span class="input-group-addon search-btn"><i class="ik ik-search"></i></span>
+                </div>
+            </div>
+            <button type="button" id="navbar-fullscreen" class="nav-link"><i class="ik ik-maximize"></i></button>*@
+
                     </div>
-                    <div class="top-menu d-flex align-items-center">
-                        <div class="dropdown">
-                            <a class="dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="avatar" src="~/Areas/Admin/img/user.jpg" alt=""></a>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="profile.html"><i class="ik ik-user dropdown-icon"></i> Xem thông tin</a>
-                                <a class="dropdown-item" href="#"><i class="ik ik-settings dropdown-icon"></i> Sửa thông tin</a>
-                                @Html.ActionLink("Đăng xuất", "Logout", "Manager", new { area = "Admin" }, new { @class = "dropdown-item" })
-                                @*<a class="dropdown-item" href="login.html"><i class="ik ik-power dropdown-icon"></i> Đăng xuất</a>*@
+                    @if (@Session["TenNhanVien"].ToString() != "")
+                    {
+                        <div class="top-menu d-flex align-items-center">
+                            <div>@Session["TenNhanVien"].ToString()</div>
+                            <div class="dropdown">
+                                <a class="dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="avatar" src="~/Areas/Admin/img/user.jpg" alt=""></a>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                                    <a class="dropdown-item" href="profile.html"> Xem thông tin</a>
+                                    <a class="dropdown-item" href="#"> Sửa thông tin</a>
+                                    @*@Html.ActionLink("Đăng xuất", "Logout", "Home")*@
+                                    @Html.ActionLink("Đăng xuất", "Logout", "Manager", new { area = "Admin" }, new { @class = "dropdown-item" })
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    }
                 </div>
             </div>
         </header>
@@ -86,15 +90,18 @@
                             </div>
                             <div class="nav-lavel">QUẢN LÝ DỊCH VỤ</div>
                             <div class="nav-item has-sub">
-                                @Html.ActionLink("Danh sách gói thai sản", "Index", "Gois")
+                                @Html.ActionLink("Danh sách gói thai sản", "Index", "GoisAdmin")
                             </div>
                             <div class="nav-lavel">QUẢN LÝ ĐƠN DỊCH VỤ </div>
                             <div class="nav-item has-sub">
-                                <a href="#"><span>Đơn đặt dịch vụ thường</span></a>
+                                @Html.ActionLink("Danh sách đơn đặt dịch vụ", "Index", "DatGoisAdmin")
                             </div>
-                            <div class="nav-item has-sub">
-                                <a href="#"><span>Đơn đặt dịch vụ Vip</span> <span class="badge badge-danger">Vip</span></a>
-                            </div>
+                            @*<div class="nav-item has-sub">
+                                    <a href="#"><span>Đơn đặt dịch vụ thường</span></a>
+                                </div>
+                                <div class="nav-item has-sub">
+                                    <a href="#"><span>Đơn đặt dịch vụ Vip</span> <span class="badge badge-danger">Vip</span></a>
+                                </div>*@
                         </nav>
                     </div>
                 </div>
@@ -107,7 +114,7 @@
             <footer class="footer">
                 <div class="w-100 clearfix">
                     <span class="text-center text-sm-left d-md-inline-block">Copyright © 2020 </span>
-                    <span class="float-none float-sm-right mt-1 mt-sm-0 text-center">Crafted with <i class="fa fa-heart text-danger"></i> by <a href="" class="text-dark">...</a></span>
+                    <span class="float-none float-sm-right mt-1 mt-sm-0 text-center">Crafted with by <a href="" class="text-danger">Ánh</a></span>
                 </div>
             </footer>
 

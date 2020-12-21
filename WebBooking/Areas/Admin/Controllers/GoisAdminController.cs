@@ -8,113 +8,109 @@ using System.Web;
 using System.Web.Mvc;
 using WebBooking.Models;
 
-namespace WebBooking.Controllers
+namespace WebBooking.Areas.Admin.Controllers
 {
-    public class CustomersController : Controller
+    public class GoisAdminController : BaseController
     {
         private DBconect db = new DBconect();
 
-        // GET: Customers
+        // GET: Admin/GoisAdmin
         public ActionResult Index()
         {
-            if(Session["IDKhachHang"] == null)
-            {
-                return RedirectToAction("Login", "Home");
-            }    
-            return View(db.Customers.ToList());
+            return View(db.Gois.ToList());
         }
 
-        // GET: Customers/Details/5
+        // GET: Admin/GoisAdmin/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Customer customer = db.Customers.Find(id);
-            if (customer == null)
+            Goi goi = db.Gois.Find(id);
+            if (goi == null)
             {
                 return HttpNotFound();
             }
-            return View(customer);
+            return View(goi);
         }
 
-        // GET: Customers/Create
+        // GET: Admin/GoisAdmin/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Customers/Create
+        // POST: Admin/GoisAdmin/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CustomerId,CustomerName,Address,Date,Note,State")] Customer customer)
+        public ActionResult Create([Bind(Include = "GoiId,GoiName,Note,Img")] Goi goi)
         {
             if (ModelState.IsValid)
             {
-                db.Customers.Add(customer);
+                db.Gois.Add(goi);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(customer);
+            return View(goi);
         }
 
-        // GET: Customers/Edit/5
+        // GET: Admin/GoisAdmin/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Customer customer = db.Customers.Find(id);
-            if (customer == null)
+            Goi goi = db.Gois.Find(id);
+            if (goi == null)
             {
                 return HttpNotFound();
             }
-            return View(customer);
+            return View(goi);
         }
 
-        // POST: Customers/Edit/5
+        // POST: Admin/GoisAdmin/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CustomerId,CustomerName,Address,Date,Note,State")] Customer customer)
+        public ActionResult Edit([Bind(Include = "GoiId,GoiName,Note,Img")] Goi goi)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(customer).State = EntityState.Modified;
+                db.Entry(goi).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(customer);
+            return View(goi);
         }
 
-        // GET: Customers/Delete/5
+        // GET: Admin/GoisAdmin/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Customer customer = db.Customers.Find(id);
-            if (customer == null)
+            Goi goi = db.Gois.Find(id);
+            if (goi == null)
             {
                 return HttpNotFound();
             }
-            return View(customer);
+            return View(goi);
         }
 
-        // POST: Customers/Delete/5
+        // POST: Admin/GoisAdmin/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Customer customer = db.Customers.Find(id);
-            db.Customers.Remove(customer);
+            Goi goi = db.Gois.Find(id);
+            db.Gois.Remove(goi);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

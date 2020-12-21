@@ -5,10 +5,10 @@
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Danh sách nhân viên</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Tạo mới nhân viên", "Create")
 </p>
 <table class="table">
     <tr>
@@ -20,9 +20,6 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.emailNV)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.passwordNV)
         </th>
         <th></th>
     </tr>
@@ -37,9 +34,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.emailNV)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.passwordNV)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.IDNhanVien }) |

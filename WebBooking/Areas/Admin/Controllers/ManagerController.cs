@@ -21,15 +21,15 @@ namespace WebBooking.Areas.Admin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Login(NhanVien nhanvien)
-        {
-            var ma_hoa_du_lieu = GetMD5(nhanvien.emailNV);
-            var kiem_tra_tai_khoan = db.Customers.Where(s => s.email.Equals(nhanvien.emailNV) && s.password.Equals(ma_hoa_du_lieu)).ToList();
+        { 
+            var ma_hoa_du_lieu = GetMD5(nhanvien.passwordNV);
+            var kiem_tra_tai_khoan = db.NhanViens.Where(s => s.emailNV.Equals(nhanvien.emailNV) && s.passwordNV.Equals(ma_hoa_du_lieu)).ToList();
             if (kiem_tra_tai_khoan.Count() > 0)
             {
                 //add session
-                Session["IDNhanVien"] = kiem_tra_tai_khoan.FirstOrDefault().CustomerId;
-                Session["TenNhanVien"] = kiem_tra_tai_khoan.FirstOrDefault().CustomerName;
-                return RedirectToAction("Index", "CustomersMng");
+                Session["IDNhanVien"] = kiem_tra_tai_khoan.FirstOrDefault().IDNhanVien;
+                Session["TenNhanVien"] = kiem_tra_tai_khoan.FirstOrDefault().TenNhanVien;
+                return RedirectToAction("Index", "HomeAdmin");
             }
             else
             {
@@ -37,11 +37,12 @@ namespace WebBooking.Areas.Admin.Controllers
                 return View();
             }
         }
-        [HttpPost]
+
         public ActionResult Logout()
         {
-            Session.Clear();//remove session
-            return RedirectToAction("Login/Index");
+            Session["IDNhanVien"] = "";
+            Session["TenNhanVien"] = "";
+            return RedirectToAction("Login", "Manager");
         }
 
 

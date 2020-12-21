@@ -4,13 +4,15 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using WebBooking.Models;
 
 namespace WebBooking.Areas.Admin.Controllers
 {
-    public class CustomersController : Controller
+    public class CustomersController : BaseController
     {
         private DBconect db = new DBconect();
 
@@ -46,10 +48,18 @@ namespace WebBooking.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CustomerId,CustomerName,Address,Tel,email,password")] Customer customer)
+        public ActionResult Create(Customer customer)
         {
             if (ModelState.IsValid)
             {
+                if (customer.password != customer.confirm_password)
+                {
+                    ViewBag.Message = "Confirm password phải trùng với Pasword";
+                    return View(customer);
+                }
+                customer.password = GetMD5(customer.password);
+                db.Configuration.ValidateOnSaveEnabled = false;
+
                 db.Customers.Add(customer);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -70,6 +80,8 @@ namespace WebBooking.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
+            //customer.password = EncodePassword(customer.password);
+            customer.confirm_password = customer.password;
             return View(customer);
         }
 
@@ -78,11 +90,35 @@ namespace WebBooking.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CustomerId,CustomerName,Address,Tel,email,password")] Customer customer)
+        public ActionResult Edit(Customer customer, int id)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(customer).State = EntityState.Modified;
+                if (customer.password != customer.confirm_password)
+                {
+                    ViewBag.Message = "Confirm password phải trùng với Pasword";
+                    return View(customer);
+                }
+                Customer NewCus = db.Customers.Find(id);
+                NewCus.CustomerId = customer.CustomerId;
+                NewCus.CustomerName = customer.CustomerName;
+                NewCus.Address = customer.Address;
+                NewCus.Tel = customer.Tel;
+                NewCus.email = customer.email;
+                //nếu password không thay đổi
+                if (NewCus.password == customer.password)
+                {
+                    NewCus.password = customer.password;
+                }
+                else
+                {
+                    //Nếu thay đổi password cần phải xóa hết rồi nhập lại. Nếu không sẽ lưu pass sai
+                    NewCus.password = GetMD5(customer.password);
+                }            
+
+                //customer.password = GetMD5(customer.password);
+                //db.Entry(customer).State = EntityState.Modified;
+                db.Configuration.ValidateOnSaveEnabled = false;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -113,6 +149,20 @@ namespace WebBooking.Areas.Admin.Controllers
             db.Customers.Remove(customer);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+        public static string GetMD5(string str)
+        {
+            MD5 md5 = new MD5CryptoServiceProvider();
+            byte[] fromData = Encoding.UTF8.GetBytes(str);
+            byte[] targetData = md5.ComputeHash(fromData);
+            string mk_da_ma_hoa = null;
+
+            for (int i = 0; i < targetData.Length; i++)
+            {
+                mk_da_ma_hoa += targetData[i].ToString("x2");
+
+            }
+            return mk_da_ma_hoa;
         }
 
         protected override void Dispose(bool disposing)

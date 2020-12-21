@@ -16,6 +16,13 @@ namespace WebBooking
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            
+        }
+
+        protected void Session_Start(Object sender, EventArgs e)
+        {
+            HttpContext.Current.Session.Add("IDNhanVien", "");
+            HttpContext.Current.Session.Add("TenNhanVien", "");
         }
     }
 }

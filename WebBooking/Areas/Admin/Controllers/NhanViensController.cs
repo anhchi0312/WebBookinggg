@@ -4,13 +4,15 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using WebBooking.Models;
 
 namespace WebBooking.Areas.Admin.Controllers
 {
-    public class NhanViensController : Controller
+    public class NhanViensController : BaseController
     {
         private DBconect db = new DBconect();
 
@@ -46,10 +48,17 @@ namespace WebBooking.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IDNhanVien,TenNhanVien,SDT,emailNV,passwordNV")] NhanVien nhanVien)
+        public ActionResult Create(NhanVien nhanVien)
         {
             if (ModelState.IsValid)
             {
+                if (nhanVien.passwordNV != nhanVien.confirm_password)
+                {
+                    ViewBag.Message = "Confirm password phải trùng với Pasword";
+                    return View(nhanVien);
+                }
+                nhanVien.passwordNV = GetMD5(nhanVien.passwordNV);
+                db.Configuration.ValidateOnSaveEnabled = false;
                 db.NhanViens.Add(nhanVien);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -66,6 +75,7 @@ namespace WebBooking.Areas.Admin.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             NhanVien nhanVien = db.NhanViens.Find(id);
+            nhanVien.confirm_password = nhanVien.passwordNV;
             if (nhanVien == null)
             {
                 return HttpNotFound();
@@ -78,11 +88,34 @@ namespace WebBooking.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IDNhanVien,TenNhanVien,SDT,emailNV,passwordNV")] NhanVien nhanVien)
+        public ActionResult Edit(NhanVien nhanVien, int id)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(nhanVien).State = EntityState.Modified;
+                if (nhanVien.passwordNV != nhanVien.confirm_password)
+                {
+                    ViewBag.Message = "Confirm password phải trùng với Pasword";
+                    return View(nhanVien);
+                }
+                NhanVien NewNhanVien = db.NhanViens.Find(id);
+                NewNhanVien.IDNhanVien = nhanVien.IDNhanVien;
+                NewNhanVien.TenNhanVien = nhanVien.TenNhanVien;
+                NewNhanVien.SDT = nhanVien.SDT;
+                NewNhanVien.emailNV = nhanVien.emailNV;
+                NewNhanVien.passwordNV = GetMD5(nhanVien.passwordNV);
+                //nếu password không thay đổi
+                if (NewNhanVien.passwordNV == nhanVien.passwordNV)
+                {
+                    NewNhanVien.passwordNV = nhanVien.passwordNV;
+                }
+                else
+                {
+                    //Nếu thay đổi password cần phải xóa hết rồi nhập lại. Nếu không sẽ lưu pass sai (không biết mk là gì)
+                    NewNhanVien.passwordNV = GetMD5(nhanVien.passwordNV);
+                }
+                //customer.password = GetMD5(customer.password);
+                //db.Entry(customer).State = EntityState.Modified;
+                db.Configuration.ValidateOnSaveEnabled = false;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -115,6 +148,20 @@ namespace WebBooking.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
+        public static string GetMD5(string str)
+        {
+            MD5 md5 = new MD5CryptoServiceProvider();
+            byte[] fromData = Encoding.UTF8.GetBytes(str);
+            byte[] targetData = md5.ComputeHash(fromData);
+            string mk_da_ma_hoa = null;
+
+            for (int i = 0; i < targetData.Length; i++)
+            {
+                mk_da_ma_hoa += targetData[i].ToString("x2");
+
+            }
+            return mk_da_ma_hoa;
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

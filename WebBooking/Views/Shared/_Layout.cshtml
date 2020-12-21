@@ -23,7 +23,7 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("Gói dịch vụ", "Index", "Gois")</li>
                     <li>@Html.ActionLink("Bài viết", "Index", "News")</li>
-                    <li>@Html.ActionLink("Khách hàng", "Index", "Customers")</li>
+                    @*<li>@Html.ActionLink("Khách hàng", "Index", "Customers")</li>*@
                     <li>@Html.ActionLink("Đặt gói", "Index", "DatGois")</li>
                     @if (Session["IDKhachHang"] == null)
                     {
@@ -32,6 +32,7 @@
                     }
                     else
                     {
+                        
                         <li>@Html.ActionLink("Đăng xuất", "Logout", "Home")</li>
                     }
 

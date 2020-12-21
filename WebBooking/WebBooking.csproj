@@ -135,12 +135,13 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\BaseController.cs" />
     <Compile Include="Areas\Admin\Controllers\CustomersController.cs" />
-    <Compile Include="Areas\Admin\Controllers\CustomersMngController.cs" />
-    <Compile Include="Areas\Admin\Controllers\GoisController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DatGoisAdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\GoisAdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\HomeAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\ManagerController.cs" />
     <Compile Include="Areas\Admin\Controllers\NhanViensController.cs" />
-    <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\DatGoisController.cs" />
     <Compile Include="Controllers\GoisController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -175,6 +176,10 @@
     <Compile Include="Migrations\202012151046390_edit_table_NV.cs" />
     <Compile Include="Migrations\202012151046390_edit_table_NV.Designer.cs">
       <DependentUpon>202012151046390_edit_table_NV.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012160310595_edit.cs" />
+    <Compile Include="Migrations\202012160310595_edit.Designer.cs">
+      <DependentUpon>202012160310595_edit.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -252,16 +257,6 @@
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Areas\Admin\Views\Manager\Login.cshtml" />
-    <Content Include="Areas\Admin\Views\CustomersMng\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\CustomersMng\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\CustomersMng\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\CustomersMng\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\CustomersMng\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Gois\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Gois\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\Gois\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\Gois\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\Gois\Index.cshtml" />
     <Content Include="Areas\Admin\Views\NhanViens\Create.cshtml" />
     <Content Include="Areas\Admin\Views\NhanViens\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\NhanViens\Details.cshtml" />
@@ -272,6 +267,18 @@
     <Content Include="Areas\Admin\Views\Customers\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Customers\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Customers\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\HomeAdmin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\DatGoisAdmin\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\DatGoisAdmin\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\DatGoisAdmin\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\DatGoisAdmin\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\DatGoisAdmin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\GoisAdmin\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\GoisAdmin\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\GoisAdmin\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\GoisAdmin\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\GoisAdmin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\HomeAdmin\CacGoi.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -295,17 +302,11 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Customers\Create.cshtml" />
-    <Content Include="Views\Customers\Delete.cshtml" />
-    <Content Include="Views\Customers\Details.cshtml" />
-    <Content Include="Views\Customers\Edit.cshtml" />
-    <Content Include="Views\Customers\Index.cshtml" />
     <Content Include="Views\DatGois\Create.cshtml" />
     <Content Include="Views\DatGois\Delete.cshtml" />
     <Content Include="Views\DatGois\Details.cshtml" />
     <Content Include="Views\DatGois\Edit.cshtml" />
     <Content Include="Views\DatGois\Index.cshtml" />
-    <Content Include="Views\Home\Register.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Gois\Create.cshtml" />
     <Content Include="Views\Gois\Delete.cshtml" />
@@ -318,10 +319,12 @@
     <Content Include="Views\News\Edit.cshtml" />
     <Content Include="Views\News\Index.cshtml" />
     <Content Include="Views\DatGois\PageList.cshtml" />
+    <Content Include="Views\Home\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -357,6 +360,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202012151046390_edit_table_NV.resx">
       <DependentUpon>202012151046390_edit_table_NV.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012160310595_edit.resx">
+      <DependentUpon>202012160310595_edit.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

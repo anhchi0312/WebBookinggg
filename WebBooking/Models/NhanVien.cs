@@ -15,12 +15,16 @@ namespace WebBooking.Models
         public int IDNhanVien { get; set; }
         public string TenNhanVien { get; set; }
         public string SDT { get; set; }
+        [Required, EmailAddress]
         public string emailNV { get; set; }
+
         [Required]
+        //[DataType(DataType.Password)]
         public string passwordNV { get; set; }
         [NotMapped]
         [Required]
-        [System.ComponentModel.DataAnnotations.Compare("passwordNV")]
+        //[DataType(DataType.Password)]
+        //[System.ComponentModel.DataAnnotations.Compare("passwordNV")]
         public string confirm_password { get; set; }
     }
 }

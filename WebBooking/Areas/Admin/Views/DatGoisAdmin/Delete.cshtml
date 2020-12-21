@@ -1,0 +1,73 @@
+﻿@model WebBooking.Models.DatGoi
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>DatGoi</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer.CustomerName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer.CustomerName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GoiId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GoiId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GoiName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GoiName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Note)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Note)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.State)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.State)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
